@@ -1,6 +1,6 @@
 objects = main.o leiqu.o
 name =saolei.exe
-saolei : $(objects)
+$(name)  : $(objects)
 		g++ $(objects) -o $(name)
 main.o : main.cpp leiqu.h
 		g++ -c main.cpp
