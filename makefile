@@ -8,3 +8,6 @@ leiqu.o : leiqu.cpp leiqu.h
 		g++ -c leiqu.cpp	
 run :   $(name)
 		$(name)
+clean :
+		del *.o
+		del *.exe

@@ -4,7 +4,7 @@ using namespace std;
 int random(int a){
 	return rand()% a +1;
 }	
-leiqu::leiqu(int size1,int boom_number1){
+void leiqu::init(int size1,int boom_number1){
     size=size1;boom_number=boom_number1; 	
 	srand((int)time(NULL));
 	for (int i=0;i<=100;i++)
@@ -33,5 +33,9 @@ leiqu::leiqu(int size1,int boom_number1){
 			if (map[i+1][j+1]==-1) map[i][j]++;
 		}	
 }	
+
 int leiqu::display(){
+}	
+
+int leiqu::input(){
 }	

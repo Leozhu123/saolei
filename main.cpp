@@ -1,6 +1,7 @@
 #include <iostream>
 #include "leiqu.h"
 using namespace std;
+leiqu lei;
 int GameLoop();
 int main(){
 	cout<<"Welcome to saolei"<<endl;
@@ -18,13 +19,13 @@ go2:cin>>boom_number;
 		cout<<"input an another number"<<endl;
 		goto go2;
 	}
-	leiqu lei(size,boom_number);
+	lei.init(size,boom_number);
 	lei.display();
 	while(GameLoop()==0);
 	return 0;
 }
 int GameLoop(){
-	int t=lei.in();
+	int t=lei.input();
 	lei.display();
 	if (t==1) { cout<<"You Win!"; return 1;}
 	if (t==2) { cout<<"Game over!"; return 2;}
