@@ -4,6 +4,40 @@ using namespace std;
 int random(int a){
 	return rand()% a +1;
 }	
+void leiqu::dfs(int i,int j){
+	if ((map[i][j-1]!=-1) && (i>0) && (i<=size) && (j-1>0) && (j-1<=size) && (user_in[i][j-1]==0)){
+			user_in[i][j-1]=1;
+			if (map[i][j-1]==0) dfs(i,j-1);
+	}		
+	if ((map[i][j+1]!=-1) && (i>0) && (i<=size) && (j+1>0) && (j+1<=size) && (user_in[i][j+1]==0)){
+			user_in[i][j+1]=1;
+			if (map[i][j+1]==0) dfs(i,j+1);
+	}
+	if ((map[i-1][j]!=-1) && (i-1>0) && (i-1<=size) && (j>0) && (j<=size) && (user_in[i-1][j]==0)){
+			user_in[i-1][j]=1;
+			if (map[i-1][j]==0) dfs(i-1,j);
+	}
+	if ((map[i+1][j]!=-1) && (i+1>0) && (i+1<=size) && (j>0) && (j<=size) && (user_in[i+1][j]==0)){
+			user_in[i+1][j]=1;
+			if (map[i+1][j]==0) dfs(i+1,j);
+	}
+	if ((map[i-1][j-1]!=-1) && (i-1>0) && (i-1<=size) && (j-1>0) && (j-1<=size) && (user_in[i-1][j-1]==0)){
+			user_in[i-1][j-1]=1;
+			if (map[i-1][j-1]==0) dfs(i-1,j-1);
+	}
+	if ((map[i+1][j-1]!=-1) && (i+1>0) && (i+1<=size) && (j-1>0) && (j-1<=size) && (user_in[i+1][j-1]==0)){
+			user_in[i+1][j-1]=1;
+			if (map[i+1][j-1]==0) dfs(i+1,j-1);
+	}
+	if ((map[i-1][j+1]!=-1) && (i-1>0) && (i-1<=size) && (j+1>0) && (j+1<=size) && (user_in[i-1][j+1]==0)){
+			user_in[i-1][j+1]=1;
+			if (map[i-1][j+1]==0) dfs(i-1,j+1);
+	}
+	if ((map[i+1][j+1]!=-1) && (i+1>0) && (i+1<=size) && (j+1>0) && (j+1<=size) && (user_in[i+1][j+1]==0)){
+			user_in[i+1][j+1]=1;
+			if (map[i+1][j+1]==0) dfs(i+1,j+1);
+	}
+}	
 void leiqu::init(int size1,int boom_number1){
     size=size1;boom_number=boom_number1; 	
 	mark_count=0;
@@ -36,8 +70,16 @@ void leiqu::init(int size1,int boom_number1){
 }	
 
 int leiqu::display(){
-	for (int i=1;i<=size;i++){
-		for (int j=1;j<=size;j++){
+	for (int i=0;i<=size;i++){
+		for (int j=0;j<=size;j++){
+			if (i==0 && j!=0 ) {
+				cout<<j<<' ';
+				continue;
+			}	
+			if (j==0) {
+				cout<<(char)(i+64)<<' ';
+				continue;
+			}	
 			switch(user_in[i][j]){
 				case 0: cout<<". ";
 						break;
@@ -52,14 +94,20 @@ int leiqu::display(){
 }	
 
 int leiqu::input(){
-	char ch;
+	char ch,ch1;
 	int x,y;	
 	bool tmp=false;
 go3:
 	cin>>ch;
 	switch(ch){
 		case 'M' :
-			cin>>x>>y;
+			cin>>ch1;
+			cin>>y;
+			x=ch1-64;
+			if (!(x>0) && (x<=size) && (y>0) && (y<=size)){
+				cout<<"input again";
+				goto go3;
+			}	
 			user_in[x][y]=2;
 			mark_count++;
 			if (mark_count==boom_number){
@@ -73,8 +121,23 @@ go3:
 			break;
 					
 		case 'O' :
-		
-		default: goto go3;
+			cin>>ch1;
+			cin>>y;
+			x=ch1-64;
+			if (!(x>0) && (x<=size) && (y>0) && (y<=size)){
+				cout<<"input again";
+				goto go3;
+			}
+			if (map[x][y]==-1) return 2;
+			user_in[x][y]=1;
+			dfs(x,y);
+			break;
+		case 'E' : 
+			return 3;
+			break;
+		default: 
+			cout<<"input again"<<endl;
+			goto go3;
 	}	
 	return 0;
 }	

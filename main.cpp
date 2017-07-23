@@ -29,9 +29,8 @@ go2:
 int GameLoop(){
 	int t=lei.input();
 	lei.display();
-	cout<<t;
 	if (t==1) { cout<<"You Win!"; return 1;}
 	if (t==2) { cout<<"Game over!"; return 2;}
-	
+	if (t==3) {cout<<"exit"; return 3;}
 	return 0;
 }	

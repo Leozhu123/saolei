@@ -11,4 +11,5 @@ class leiqu{
 		int display();
 		int input();
 		void init(int size1,int boom_number1);
+		void dfs(int i,int j);
 };
