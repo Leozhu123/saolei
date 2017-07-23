@@ -1,5 +1,6 @@
 objects = main.o leiqu.o
 name =saolei.exe
+del = del
 $(name)  : $(objects)
 		g++ $(objects) -o $(name)
 main.o : main.cpp leiqu.h
@@ -9,5 +10,5 @@ leiqu.o : leiqu.cpp leiqu.h
 run :   $(name)
 		$(name)
 clean :
-		del *.o
-		del *.exe
+		$(del) *.o
+		$(del) *.exe
