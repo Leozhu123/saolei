@@ -1,5 +1,5 @@
 #include "leiqu.h"
-#include <string>;
+#include <string>
 #include <iostream>
 using namespace std;
 int random(int a){
