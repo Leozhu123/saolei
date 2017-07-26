@@ -1,4 +1,5 @@
 #include "leiqu.h"
+#include <string>;
 #include <iostream>
 using namespace std;
 int random(int a){
@@ -38,8 +39,8 @@ void leiqu::dfs(int i,int j){
 			if (map[i+1][j+1]==0) dfs(i+1,j+1);
 	}
 }	
-void leiqu::init(int size1,int boom_number1){
-    size=size1;boom_number=boom_number1; 	
+void leiqu::init(int size1,int bomb_number1){
+    size=size1;bomb_number=bomb_number1; 	
 	mark_count=0;
 	srand((int)time(NULL));
 	for (int i=0;i<=100;i++)
@@ -47,7 +48,7 @@ void leiqu::init(int size1,int boom_number1){
 			map[i][j]=0;user_in[i][j]=0;
 		}	
 	int count=0;
-	while(count<boom_number){
+	while(count<bomb_number){
 		int x=random(size);
 		int y=random(size);
 		if (map[x][y]==0){
@@ -99,18 +100,20 @@ int leiqu::input(){
 	bool tmp=false;
 go3:
 	cin>>ch;
+	string tmps;
 	switch(ch){
 		case 'M' :
 			cin>>ch1;
 			cin>>y;
 			x=ch1-64;
 			if (!(x>0) && (x<=size) && (y>0) && (y<=size)){
+				getline(cin,tmps);
 				cout<<"input again";
 				goto go3;
 			}	
 			user_in[x][y]=2;
 			mark_count++;
-			if (mark_count==boom_number){
+			if (mark_count==bomb_number){
 				for (int i=1;i<=size;i++)
 					for (int j=1;j<=size;j++){
 						if ((map[i][j]==-1) && !(user_in[i][j]==2)) tmp=true;
@@ -125,6 +128,7 @@ go3:
 			cin>>y;
 			x=ch1-64;
 			if (!(x>0) && (x<=size) && (y>0) && (y<=size)){
+			    getline(cin,tmps);
 				cout<<"input again";
 				goto go3;
 			}
@@ -136,6 +140,7 @@ go3:
 			return 3;
 			break;
 		default: 
+		    getline(cin,tmps);
 			cout<<"input again"<<endl;
 			goto go3;
 	}	
