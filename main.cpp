@@ -13,15 +13,15 @@ go1:
 		cout<<"input an another number"<<endl;
 		goto go1;
 	}   
-	cout<<"input a number to set the number of boom"<<endl;
-	int boom_number;
+	cout<<"input a number to set the number of bomb"<<endl;
+	int bomb_number;
 go2:
-	cin>>boom_number;
-	if ((boom_number>size*size) || (boom_number<1)) {
+	cin>>bomb_number;
+	if ((bomb_number>size*size) || (bomb_number<1)) {
 		cout<<"input an another number"<<endl;
 		goto go2;
 	}
-	lei.init(size,boom_number);
+	lei.init(size,bomb_number);
 	lei.display();
 	while(GameLoop()==0);
 	return 0;
